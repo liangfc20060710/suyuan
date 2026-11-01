@@ -4,10 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#f2f3f5">
-<title>杜阮凉瓜溯源 · 小程序样例</title>
+<!-- 禁止缓存：确保打开即最新版 -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>杜阮凉瓜溯源 · 生产档案</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   :root{
@@ -66,49 +68,22 @@
     }
   }
 
-  /* ============ 状态栏 ============ */
-  .statusbar{
-    height:44px;flex:0 0 auto;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:0 22px;
-    font-size:13px;font-weight:600;letter-spacing:.02em;
-    background:var(--bg);
-  }
-  .statusbar .icons{display:flex;align-items:center;gap:5px;}
-  .bar-sig{display:flex;align-items:flex-end;gap:1.5px;height:10px;}
-  .bar-sig i{width:2.5px;background:#15181d;border-radius:.5px;display:block;}
-  .bar-sig i:nth-child(1){height:4px;}
-  .bar-sig i:nth-child(2){height:6px;}
-  .bar-sig i:nth-child(3){height:8px;}
-  .bar-sig i:nth-child(4){height:10px;}
-  .batt{width:22px;height:11px;border:1.2px solid #15181d;border-radius:3px;position:relative;padding:1.4px;}
-  .batt::after{content:"";position:absolute;right:-3.5px;top:3.2px;width:2px;height:4.5px;background:#15181d;border-radius:0 1px 1px 0;}
-  .batt em{display:block;height:100%;width:72%;background:#15181d;border-radius:1px;}
-
-  /* ============ 导航栏 ============ */
+  /* ============ 页头 ============ */
   .navbar{
-    flex:0 0 auto;height:44px;
+    flex:0 0 auto;
     display:flex;align-items:center;justify-content:center;
     position:relative;
     background:var(--bg);
-    padding-right:96px;padding-left:96px;
+    padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
   }
   .navbar .title{
     font-size:17px;font-weight:600;letter-spacing:.01em;
     white-space:nowrap;
   }
-  .capsule{
-    position:absolute;right:12px;top:50%;transform:translateY(-50%);
-    width:87px;height:32px;border-radius:16px;
-    background:rgba(255,255,255,.72);
-    border:.5px solid rgba(0,0,0,.08);
-    display:flex;align-items:center;
-    backdrop-filter:blur(6px);
+  .navbar .sub{
+    position:absolute;right:16px;top:calc(10px + env(safe-area-inset-top));
+    font-size:11px;color:var(--muted);letter-spacing:.02em;
   }
-  .capsule span{flex:1;display:flex;align-items:center;justify-content:center;font-size:15px;color:#15181d;line-height:1;}
-  .capsule .sep{flex:0 0 .5px;width:.5px;height:18px;background:rgba(0,0,0,.12);}
-  .capsule .dot{width:13px;height:13px;border:1.6px solid #15181d;border-radius:50%;position:relative;flex:0 0 auto;}
-  .capsule .dot::after{content:"";position:absolute;inset:2.6px;border:1.4px solid #15181d;border-radius:50%;}
 
   /* ============ 视图容器 ============ */
   .views{flex:1 1 auto;position:relative;overflow:hidden;}
@@ -447,31 +422,17 @@
   .tab.active b{font-weight:600;}
 
   @media (max-width:519px){
-    .statusbar{padding-top:env(safe-area-inset-top);height:calc(44px + env(safe-area-inset-top));}
+    .device{padding-top:0;}
   }
 </style>
 </head>
 <body>
 
 <div class="device">
-  <!-- 状态栏 -->
-  <div class="statusbar">
-    <span>9:41</span>
-    <span class="icons">
-      <span class="bar-sig"><i></i><i></i><i></i><i></i></span>
-      <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 9.6l1.9-2.3a3 3 0 00-3.8 0l1.9 2.3z" fill="#15181d"/><path d="M2.3 4.6a8 8 0 0110.4 0" stroke="#15181d" stroke-width="1.3" stroke-linecap="round"/><path d="M4.5 6.9a5 5 0 016 0" stroke="#15181d" stroke-width="1.3" stroke-linecap="round"/></svg>
-      <span class="batt"><em></em></span>
-    </span>
-  </div>
-
-  <!-- 导航栏 -->
+  <!-- 页头 -->
   <div class="navbar">
     <div class="title" id="navTitle">杜阮凉瓜溯源</div>
-    <div class="capsule">
-      <span>•••</span>
-      <span class="sep"></span>
-      <span><span class="dot"></span></span>
-    </div>
+    <div class="sub">上巷村</div>
   </div>
 
   <div class="views">
